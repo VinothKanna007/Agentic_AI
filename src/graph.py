@@ -1,4 +1,3 @@
-import sqlite3
 from typing import Annotated, TypedDict
 
 from langgraph.graph import StateGraph, START, END
@@ -7,6 +6,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langgraph.checkpoint.sqlite import SqliteSaver
 
 from src.config import TIGER_AI_GATEWAY_API_KEY
+from src.memory import create_memory_connection
 from src.sql_tools import execute_sql, get_schema
 from src.safety import validate_sql
 from src.tiger_gateway_client import create_tiger_gateway_client
@@ -121,7 +121,7 @@ builder.add_edge("summarize_query_result", "final_response")
 builder.add_edge("final_response", END)
 
 memory_db_path = "sql_agent_memory.db"
-memory_conn = sqlite3.connect(memory_db_path, check_same_thread=False)
+memory_conn = create_memory_connection(memory_db_path)
 memory = SqliteSaver(memory_conn)
 
 app = builder.compile(checkpointer=memory)
