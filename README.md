@@ -45,12 +45,17 @@ MYSQL_PASSWORD=Root@123
 
 > Note: Contact Tiger IThelpdesk for any issues.
 
-### 6. Create retail database and load the sample data into MySQL
+### 6. Run the test suite
+```powershell
+uv run pytest
+```
+
+### 7. Create retail database and load the sample data into MySQL
 ```powershell
 uv run .\database\load_data.py
 ```
 
-### 7. Run the CLI
+### 8. Run the CLI
 ```powershell
 uv run .\src\app.py
 ```
