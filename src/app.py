@@ -27,10 +27,15 @@ class QueryResponse(BaseModel):
         arbitrary_types_allowed = True
 
 
-def make_input_state(question: str) -> dict:
+def make_input_state(question: str, prior_state: dict | None = None) -> dict:
+    previous_messages = []
+    if prior_state and prior_state.get("messages"):
+        previous_messages = list(prior_state["messages"])
+
     return {
         "messages": [
             SystemMessage(content="You are a helpful SQL assistant for a retail database."),
+            *previous_messages,
             HumanMessage(content=question),
         ],
         "question": question,
@@ -75,13 +80,15 @@ def query(request: QueryRequest) -> QueryResponse:
 
 def run_cli() -> None:
     print("SQL assistant CLI. Type a question or 'quit' to exit.")
+    prior_state = None
     while True:
         question = input("ask> ").strip()
         if not question or question.lower() in {"quit", "exit"}:
             break
 
-        state = make_input_state(question)
+        state = make_input_state(question, prior_state=prior_state)
         result = agent_app.invoke(state, config={"configurable": {"thread_id": "cli"}})
+        prior_state = result
 
         print("\n=== Messages ===")
         for message in state["messages"]:

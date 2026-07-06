@@ -87,7 +87,11 @@ def execute_mysql_select(state: AgentState) -> AgentState:
 
 def summarize_query_result(state: AgentState) -> AgentState:
     if state.get("error"):
-        return state
+        friendly_error = (
+            "I couldn't generate a safe SQL query for that request. "
+            "Please ask for a safe data lookup such as a SELECT query on the available tables."
+        )
+        return {**state, "answer": friendly_error}
 
     question = state.get("question") or get_last_user_question(state)
     prompt = [
