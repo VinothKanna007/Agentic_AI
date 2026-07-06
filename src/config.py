@@ -16,9 +16,12 @@ def get_env(name: str, default: str | None = None) -> str | None:
     return os.getenv(name, default)
 
 
-TIGER_AI_GATEWAY_URL = "https://api.ai-gateway.tigeranalytics.com"
+TIGER_AI_GATEWAY_URL = get_env(
+    "TIGER_AI_GATEWAY_URL",
+    "https://api.ai-gateway.tigeranalytics.com",
+)
 TIGER_AI_GATEWAY_API_KEY = get_env("TIGER_AI_GATEWAY_API_KEY")
-TIGER_AI_GATEWAY_MODEL = "gpt-5-nano"
+TIGER_AI_GATEWAY_MODEL = get_env("TIGER_AI_GATEWAY_MODEL", "gpt-5-nano")
 
 __all__ = [
     "TIGER_AI_GATEWAY_URL",

@@ -34,12 +34,23 @@ uv sync
 ### 4. Create a local environment file
 Create a file named `.env` in the project root with the following values:
 
+Required values:
 ```env
-TIGER_AI_GATEWAY_API_KEY=xxxxx
-MYSQL_PASSWORD=Root@123
+TIGER_AI_GATEWAY_API_KEY=sample-api-key
+MYSQL_PASSWORD=sample-password
+```
+
+`Optional` values:
+```env
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+TIGER_AI_GATEWAY_URL=https://api.ai-gateway.tigeranalytics.com
+TIGER_AI_GATEWAY_MODEL=gpt-5-nano
 ```
 
 > Security note: Do not enter API keys, passwords, tokens, personal data, or confidential business information into AI tools. Use placeholders or redacted examples only.
+>
 
 ### 5. Make sure MySQL is ready
 - Start your MySQL server.

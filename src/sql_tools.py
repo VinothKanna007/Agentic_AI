@@ -9,10 +9,10 @@ from src.safety import validate_sql_string
 
 def get_db_connection() -> mysql.connector.connection.MySQLConnection:
     return mysql.connector.connect(
-        host=os.getenv("MYSQL_HOST", "localhost"),
-        port=int(os.getenv("MYSQL_PORT", "3306")),
-        database=os.getenv("MYSQL_DATABASE", "retail_agent_assignment"),
-        user=os.getenv("MYSQL_USER", "root"),
+        host=get_env("MYSQL_HOST", "localhost"),
+        port=int(get_env("MYSQL_PORT", "3306") or "3306"),
+        database=get_env("MYSQL_DATABASE", "retail_agent_assignment"),
+        user=get_env("MYSQL_USER", "root"),
         password=get_env("MYSQL_PASSWORD"),
         autocommit=True,
     )
