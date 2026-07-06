@@ -12,7 +12,7 @@ def mysql_env(monkeypatch):
     monkeypatch.setenv("MYSQL_PORT", os.getenv("MYSQL_PORT", "3306"))
     monkeypatch.setenv("MYSQL_DATABASE", os.getenv("MYSQL_DATABASE", "retail_agent_assignment"))
     monkeypatch.setenv("MYSQL_USER", os.getenv("MYSQL_USER", "root"))
-    monkeypatch.setenv("MYSQL_PASSWORD", os.getenv("MYSQL_PASSWORD", "Root@123"))
+    monkeypatch.setenv("MYSQL_PASSWORD", os.getenv("MYSQL_PASSWORD", ""))
 
 
 def invoke_tool(tool, payload):

@@ -1,5 +1,6 @@
 import csv
 import os
+import sys
 from pathlib import Path
 import mysql.connector
 from mysql.connector import Error
@@ -8,10 +9,15 @@ ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_FILE = Path(__file__).resolve().parent / "mysql_schema.sql"
 DATA_DIR = ROOT / "data"
 
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.config import get_env
+
 MYSQL_HOST = os.getenv("MYSQL_HOST", "localhost")
 MYSQL_PORT = int(os.getenv("MYSQL_PORT", "3306"))
 MYSQL_USER = os.getenv("MYSQL_USER", "root")
-MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "Root@123")
+MYSQL_PASSWORD = get_env("MYSQL_PASSWORD")
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE", "retail_agent_assignment")
 
 TABLE_FILES = {
