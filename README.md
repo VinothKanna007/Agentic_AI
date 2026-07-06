@@ -39,21 +39,25 @@ TIGER_AI_GATEWAY_API_KEY=xxxxx
 MYSQL_PASSWORD=Root@123
 ```
 
+> Security note: Do not enter API keys, passwords, tokens, personal data, or confidential business information into AI tools. Use placeholders or redacted examples only.
+
 ### 5. Make sure MySQL is ready
 - Start your MySQL server.
 - Start -> Services -> Look for Mysql**
 
 > Note: Contact Tiger IThelpdesk for any issues.
 
-### 6. Run the test suite
+
+### 6. Create retail database and load the sample data into MySQL
+```powershell
+uv run .\database\load_data.py
+```
+
+### 7. Run the test suite
 ```powershell
 uv run pytest
 ```
 
-### 7. Create retail database and load the sample data into MySQL
-```powershell
-uv run .\database\load_data.py
-```
 
 ### 8. Run the CLI
 ```powershell

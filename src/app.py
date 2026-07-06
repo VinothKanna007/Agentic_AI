@@ -34,7 +34,13 @@ def make_input_state(question: str, prior_state: dict | None = None) -> dict:
 
     return {
         "messages": [
-            SystemMessage(content="You are a helpful SQL assistant for a retail database."),
+            SystemMessage(
+                content=(
+                    "You are a helpful SQL assistant for a retail database. "
+                    "Do not enter or expose API keys, passwords, tokens, personal data, or confidential business information in any AI tool or prompt; "
+                    "use placeholders or redacted examples only."
+                )
+            ),
             *previous_messages,
             HumanMessage(content=question),
         ],
