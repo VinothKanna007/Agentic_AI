@@ -1,4 +1,4 @@
-# Agentic AI Demo
+# Retail SQL Data Analyst Agent 
 
 This project is a SQL assistant that uses a local MySQL database and an external AI gateway.
 
