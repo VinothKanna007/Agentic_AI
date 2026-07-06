@@ -5,7 +5,6 @@ from langgraph.graph.message import AnyMessage, add_messages
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langgraph.checkpoint.sqlite import SqliteSaver
 
-from src.config import TIGER_AI_GATEWAY_API_KEY
 from src.memory import create_memory_connection
 from src.sql_tools import execute_sql, get_schema
 from src.safety import validate_sql
